@@ -5231,9 +5231,9 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-popper.js@1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.11.0.tgz#0103f23ac0c9221d944e7f25e3aba4c2f73987de"
+popper.js@^1.11.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.15.0.tgz#5560b99bbad7647e9faa475c6b8056621f5a4ff2"
 
 portfinder@^1.0.20, portfinder@^1.0.9:
   version "1.0.20"
