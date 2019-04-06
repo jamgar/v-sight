@@ -1,9 +1,9 @@
 <template>
   <div id="navbar" class="navbar navbar-dark fixed-top bg-dark">
-    <a href="#" class="navbar-brand">
+    <router-link to="/" class="navbar-brand">
       <span class="logo logo-left">v-</span>
       <span class="logo logo-right">Sight</span>
-    </a>
+    </router-link>
   </div>
 </template>
 

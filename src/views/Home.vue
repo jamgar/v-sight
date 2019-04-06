@@ -1,5 +1,7 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    <h1>Welcome to v-Sight Dashboard</h1>
+  </div>
 </template>
 
 <script>

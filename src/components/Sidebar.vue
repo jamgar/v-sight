@@ -2,13 +2,13 @@
   <div id="sidebar" class="col-sm-3 col-md-2 d-none d-sm-block sidebar">
     <ul class="nav nav-pills flex-column">
       <li class="nav-item">
-        <a href="#" class="nav-link">Sales Volume</a>
+        <router-link to="/sales" class="nav-link">Sales Volume</router-link>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Latest Orders</a>
+        <router-link to="/orders" class="nav-link">Latest Orders</router-link>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">System Health</a>
+        <router-link to="/health" class="nav-link">System Health</router-link>
       </li>
     </ul>
   </div>
