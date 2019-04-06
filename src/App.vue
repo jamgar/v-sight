@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <Navbar />
-    <Sidebar />
-    <router-view />
+    <div class="container-fluid">
+      <div class="row" id="mainContent">
+        <Sidebar class="col-sm-3" />
+        <div class="col-sm-9" id="dashboard">
+          <router-view id="dashboard" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,4 +24,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#dashboard {
+  margin-top: 60px;
+}
+</style>
