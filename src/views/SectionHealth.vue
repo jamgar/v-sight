@@ -3,7 +3,7 @@
     <h2>System Health</h2>
     <div class="card-deck servers">
       <div v-for="server in servers" :key="server.id">
-        <Server :serverData="server"/>
+        <Server :serverData="server" />
       </div>
     </div>
   </div>
