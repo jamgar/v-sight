@@ -23,75 +23,34 @@
         </tr>
       </tbody>
     </table>
+    <Pagination
+      :total="total"
+      :perPage="perPage"
+      :currentPage="page"
+      @pageChanged="onPageChanged"
+    />
   </div>
 </template>
 
 <script>
+import Pagination from '@/components/Pagination'
+
 export default {
+  components: {
+    Pagination
+  },
   data: () => ({
-    orders: [
-      {
-        id: 1,
-        customer: {
-          id: 1,
-          name: 'XYZ Logics',
-          state: 'FL',
-          email: 'sales@example.com'
-        },
-        total: 230,
-        placed: new Date(2017, 12, 1),
-        fulfilled: new Date(2017, 12, 3)
-      },
-      {
-        id: 2,
-        customer: {
-          id: 2,
-          name: 'XYZ Logics',
-          state: 'FL',
-          email: 'sales@example.com'
-        },
-        total: 230,
-        placed: new Date(2017, 12, 1),
-        fulfilled: new Date(2017, 12, 3)
-      },
-      {
-        id: 3,
-        customer: {
-          id: 3,
-          name: 'XYZ Logics',
-          state: 'FL',
-          email: 'sales@example.com'
-        },
-        total: 230,
-        placed: new Date(2017, 12, 1),
-        fulfilled: new Date(2017, 12, 3)
-      },
-      {
-        id: 4,
-        customer: {
-          id: 4,
-          name: 'XYZ Logics',
-          state: 'FL',
-          email: 'sales@example.com'
-        },
-        total: 230,
-        placed: new Date(2017, 12, 1),
-        fulfilled: new Date(2017, 12, 3)
-      },
-      {
-        id: 5,
-        customer: {
-          id: 5,
-          name: 'XYZ Logics',
-          state: 'FL',
-          email: 'sales@example.com'
-        },
-        total: 230,
-        placed: new Date(2017, 12, 1),
-        fulfilled: new Date(2017, 12, 3)
-      }
-    ]
-  })
+    orders: [],
+    total: 0,
+    page: 1,
+    perPage: 10,
+    loading: false
+  }),
+  methods: {
+    onPageChanged(page) {
+      console.log('Prev button clicked!', page)
+    }
+  }
 }
 </script>
 
