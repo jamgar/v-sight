@@ -68,6 +68,10 @@ export default {
       total: Number,
       required: true
     },
+    totalPages: {
+      total: Number,
+      required: true
+    },
     perPage: {
       type: Number,
       required: true
@@ -111,10 +115,10 @@ export default {
         })
       }
       return range
-    },
-    totalPages() {
-      return Math.ceil(this.total / this.perPage) || 0
     }
+    // totalPages() {
+    //   return Math.ceil(this.total / this.perPage) || 0
+    // }
   },
   methods: {
     onClickFirstPage() {
