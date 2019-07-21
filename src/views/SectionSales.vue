@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import moment from 'moment'
 import BarChart from '@/components/charts/BarChart.vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import LineChart from '@/components/charts/LineChart.vue'
@@ -87,10 +89,45 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState(['orders'])
+  },
   mounted() {
-    this.fillData()
+    this.$store.dispatch('getOrders', { page: 1, perPage: 10 }).then(() => {
+      this.setBarChartData()
+    })
   },
   methods: {
+    setBarChartData() {
+      const formattedOrders = this.orders.reduce((r, e) => {
+        r.push([moment(e.placed).format('YY-MM-DD'), e.total])
+        return r
+      }, [])
+
+      const p = []
+
+      const chartData = formattedOrders.reduce((r, e) => {
+        const label = e[0]
+        if (!p[label]) {
+          p[label] = e
+          r.push(p[label])
+        } else {
+          p[label][1] += e[1]
+        }
+        return r
+      }, [])
+
+      this.barDataCollection = {
+        labels: chartData.map(l => l[0]).reverse(),
+        datasets: [
+          {
+            data: chartData.map(d => d[1]),
+            label: 'Sales',
+            backgroundColor: '#f87979'
+          }
+        ]
+      }
+    },
     fillData() {
       this.barDataCollection = {
         labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7'],

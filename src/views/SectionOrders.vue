@@ -13,16 +13,19 @@
         </tr>
       </thead>
       <tbody>
+        <div class="text-center" v-if="loading">Loading Orders...</div>
         <tr v-for="order in orders" :key="order.id">
           <td>{{ order.id }}</td>
           <td>{{ order.customer.name }}</td>
           <td>{{ order.total }}</td>
           <td>{{ order.placed | formatDate }}</td>
-          <td>{{ order.fulfilled | formatDate }}</td>
+          <td>{{ order.completed | formatDate }}</td>
           <td>Status</td>
         </tr>
       </tbody>
     </table>
+    <div>{{ getMin }} through {{ getMax }} of {{ total }} orders</div>
+    <div class="pb-2">Total Pages: {{ totalPages }}</div>
     <Pagination
       :total="total"
       :totalPages="totalPages"
@@ -34,38 +37,36 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState } from 'vuex'
 import Pagination from '@/components/Pagination'
-// import { log } from 'util'
 
 export default {
   components: {
     Pagination
   },
   data: () => ({
-    orders: [],
-    total: 0,
-    totalPages: 0,
     page: 1,
-    perPage: 10,
-    loading: false
+    perPage: 10
   }),
+  computed: {
+    ...mapState(['orders', 'total', 'totalPages', 'loading']),
+    getMin() {
+      return this.perPage * this.page - this.perPage + 1
+    },
+    getMax() {
+      let max = this.perPage * this.page
+      if (max > this.total) {
+        max = this.total
+      }
+      return max
+    }
+  },
   mounted() {
     this.getOrders(this.page, this.perPage)
   },
   methods: {
     getOrders(page, perPage) {
-      this.loading = true
-
-      axios
-        .get(`https://localhost:5001/api/order/${page}/${perPage}`)
-        .then(response => {
-          this.total = response.data.page.total
-          this.totalPages = response.data.totalPages
-          this.orders = response.data.page.data
-        })
-
-      this.loading = false
+      this.$store.dispatch('getOrders', { page, perPage })
     },
     onPageChanged(page) {
       this.page = page
